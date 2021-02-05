@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://kit.fontawesome.com/edb0ed1b03.js" crossorigin="anonymous"></script>
+
+
+    <!-- <script src="node_modules/gridstack/dist/gridstack-h5.js"></script>-->
+    <!-- <link href="node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet" />  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+        type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+
+    <script src="jquery.ui.touch-punch.min.js"></script>
+    <script src="gridstack.min.js"></script>
+    <script src="gridstack.jQueryUI.min.js"></script>
+    <link href="gridstack.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./animate.min.css" />
+
+
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+    <!-- Base body of grid would be set "grid-stack" string -->
+    <div class="board-content">
+        <div class="nav-control animate__animated" style="display:none;">
+            <div class="ctrl-bar d-flex">
+                <div class="ml-auto nav-close mr-2">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="bar action-1">
+                <div class="bar-act-title" data-toggle="collapse" data-target="#act-time-int"
+                    aria-controls="act-time-int">
+                    Time interval
+                </div>
+                <div class="collapse" id="act-time-int">
+                    <div class="group-action d-flex flex-column">
+                        <div class="ml-3 action none-bottom">
+                            <div>
+                                <div class="pl-3 act-input ">
+                                    <div class="act-many2one">
+                                        15 minutes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bar action-2">
+                <div class="bar-act-title" data-toggle="collapse" data-target="#act-pp" aria-controls="act-pp">
+                    Properties
+                </div>
+                <div class="collapse" id="act-pp">
+                    <div class="group-action d-flex flex-column">
+                        <div class="ml-3 action none-bottom">
+                            <div class="title" data-toggle="collapse" data-target="#act-pp-slt"
+                                aria-controls="act-pp-slt">
+                                <span>Selection</span>
+                            </div>
+                            <div class="collapse" id="act-pp-slt">
+                                <div class="pl-3 act-input ">
+                                    <div class="act-many2one">
+                                        111 records
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="background-disable">
+
+        </div>
+        <div class="grid-stack">
+
+            <!-- Of each item inside the board, grid-stack-item is needed -->
+            <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="23" data-gs-height="17">
+                <!-- There is item content -->
+                <div class="grid-stack-item-content">
+                    <!-- Template 1:
+                Top Header show title and controll bar.
+                The body contains one frame with 1-line chart.
+                -->
+                    <div class="board-item template-1">
+                        <div class="item-header ">
+                            <div class="header-title d-flex align-items-center">
+                                <div class="title-content">
+                                    # Sales orders
+                                </div>
+                                <div class="title-info">
+                                    <!-- This id based on id of item when runing board -->
+                                    <div class="info-popup">
+                                        <span>
+                                            Something here
+                                        </span>
+                                    </div>
+                                    <!-- Demo toggle description information -->
+                                    <div class="handle-information icon">
+                                        <span id="note-info">i</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controller bar -->
+                            <div class="ml-auto header-controller d-flex align-items-center">
+                                <!-- <div class="ml-auto setting-control">
+                                <div class="group-btn d-flex">
+                                    <div>
+                                        <button class="btn btn-control"><i class="fas fa-redo-alt"
+                                                style="transform:rotateY(180deg)"></i></button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-control"><i class="fas fa-expand-arrows-alt"
+                                                style="transform:rotateZ(90deg)"></i></button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-control"><i class="fas fa-tools"></i></button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-close"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div> -->
+                                <div class="view-control d-flex align-items-center">
+                                    <div class="item time-range">
+                                        <div class="c-content">
+                                            <div class="tr many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    This week
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item channel">
+                                        <div class="cl-content">
+                                            <div class="cl many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-university"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    BigCommerce
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item time-tools">
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-tools"></i></button>
+                                            <button class="btn btn-close"><i class="fas fa-times"></i></button>
+                                        </div>
+
+                                        <!-- <div>
+                                            <button class="btn btn-close"><i class="fas fa-times"></i></button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <canvas id="chart-1-content"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-stack-item t2" data-gs-x="23" data-gs-y="0" data-gs-width="8" data-gs-height="13">
+                <div class="grid-stack-item-content">
+                    <div class="board-item template-2" type="saleorder">
+                        <div class="item-header ">
+                            <div class="header-title d-flex align-items-center">
+                                <div class="title-content">
+                                    Shippping Cost
+                                </div>
+                                <div class="title-info">
+                                    <div class="info-popup">
+                                        <span>
+                                            Something here
+                                        </span>
+                                    </div>
+                                    <div class="handle-information icon">
+                                        <span id="note-info">i</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ml-auto header-controller d-flex align-items-center">
+                                <div class="ml-auto setting-control">
+                                    <div class="group-btn d-flex">
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-redo-alt"
+                                                    style="transform:rotateY(180deg)"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-expand-arrows-alt"
+                                                    style="transform:rotateZ(90deg)"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-close"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ml-auto view-control d-flex">
+                                    <div class="item time-range">
+                                        <div class="c-content">
+                                            <div class="tr many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    This week
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item channel">
+                                        <div class="cl-content">
+                                            <div class="cl many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-university"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    BigCommerce
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content d-flex align-items-center">
+                            <div class="template-2-content d-flex row justify-content-center flex-wrap">
+                                <div class="title d-flex align-items-center">
+                                    <div class="ml-2 body-title-content">
+                                        <h1>$224.45</h1>
+                                        <!-- If description is contain reserve inside, good and bad status will be reserve. -->
+                                        <div class="description">
+                                            <p class="good">$71.76 vs. last period</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chart d-flex align-items-center ">
+                                    <canvas id="chart-2-content"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-stack-item"  data-gs-x="31" data-gs-y="0" data-gs-width="9" data-gs-height="12">
+                <div class="grid-stack-item-content">
+                    <div class="board-item template-3" type="saleorder">
+                        <div class="item-header ">
+                            <!-- <div class="ml-auto header-title">
+
+                        </div> -->
+                            <div class="ml-auto header-controller d-flex align-items-center">
+                                <div class="ml-auto setting-control">
+                                    <div class="group-btn d-flex">
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-redo-alt"
+                                                    style="transform:rotateY(180deg)"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-expand-arrows-alt"
+                                                    style="transform:rotateZ(90deg)"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-control"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-close"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="view-control d-flex">
+                                    <div class="item time-range">
+                                        <div class="c-content">
+                                            <div class="tr many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    This week
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item channel">
+                                        <div class="cl-content">
+                                            <div class="cl many2one">
+                                                <div class="icon">
+                                                    <i class="fas fa-university"></i>
+                                                </div>
+                                                <div class="many2one-content">
+                                                    BigCommerce
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="item-content d-flex align-items-center justify-content-between">
+                            <div class="title d-flex align-items-center">
+                                <div>
+                                    <h1 style="font-size: 4em;">$1.57K</h1>
+                                    <div class="description">
+                                        <div class="reserve">
+                                            <p class="bad">$628.15 vs. last period</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-footer">
+                            <div class="title-content">
+                                Total Cost
+                            </div>
+                            <div class="title-info">
+                                <div class="info-popup">
+                                    <span>
+                                        Something here
+                                    </span>
+                                </div>
+                                <div class="handle-information icon">
+                                    <span id="note-info">i</span>
+                                </div>
+                            </div>
+                            <div class="title-img">
+                                <div class="img">
+                                    <svg class="img-hold" viewBox="0 0 70 70" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <rect x="1" y="1" width="68" height="68" rx="34" fill="url(#pattern0)"
+                                            stroke="#00A09D" stroke-width="2" />
+                                        <defs>
+                                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1"
+                                                height="1">
+                                                <use xlink:href="#image0" transform="scale(0.00195312)" />
+                                            </pattern>
+                                            <image id="image0" width="512" height="512"
+                                                xlink:href="data:image/png;base64,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" />
+                                        </defs>
+                                    </svg>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // ---------------------------- HIDE Relation Popup---------------------------------
+
+    $('.grid-stack').on('resizestop', function (event, el) {
+        let items = el.element[0]
+    });
+    function findParentByClassName(tag, parent) {
+        let newTag = tag;
+        while (!newTag.classList.contains(parent) || newTag.tagName === 'BODY') {
+            newTag = newTag.parentElement;
+        }
+        if (newTag.tagName === 'BODY')
+            return false
+        else
+            return newTag
+    }
+    function closeRelationalPopup(tag, parent, relateClass, pivot) {
+        let newTag = findParentByClassName(tag, parent)
+        if (newTag) {
+            for (let t of newTag.getElementsByClassName(relateClass)) {
+                if (t === pivot) {
+                    continue;
+                }
+                t.classList.remove('render')
+            }
+        }
+    }
+    $('.btn-control').click(evt => {
+        tag = findParentByClassName(evt.target, 'board-item')
+        toggleBarStatus(tag)
+        // let tag = evt.target;
+        // while (tag.tagName != 'BUTTON') {
+        //     tag = tag.parentElement;
+        // }
+        // tag = tag.parentElement;
+        // popup = tag.getElementsByClassName('btn-popup')[0]
+        // closeRelationalPopup(tag, 'group-btn', 'btn-popup', popup)
+        // popup.classList.toggle('render')
+    })
+    $('.handle-information').click(evt => {
+        let tag = evt.target;
+        while (tag.classList.contains('handle-information')) {
+            tag = tag.parentElement;
+        }
+        tag = tag.parentElement;
+        popup = tag.getElementsByClassName('info-popup')[0]
+        popup.classList.toggle('render')
+    })
+
+    var nowBar = false;
+    var animate = ["animate__bounceInRight", "animate__bounceOutRight"]
+    $('.nav-close').click(evt => {
+        toggleBarStatus()
+    })
+
+    function toggleBarStatus(tags = false) {
+        let nav = $('.nav-control')
+        nav.removeClass('animate__bounceOutRight').removeClass('animate__bounceOutLeft')
+        if (nowBar) {
+            // Hide bar
+            nav.removeClass(animate[0]).addClass(animate[1]);
+            // Hide background
+            $('.background-disable').hide();
+            // reset item z-index and position
+            nowBar.style.zIndex = 1;
+            // remove nowBar
+            nowBar.style.backgroundColor = 'none';
+            nowBar = false;
+        }
+        else {
+            // Set value
+            tags.style.zIndex = 499
+            nowBar = tags
+            nowBar.style.backgroundColor = 'white'
+            // Calculate the position
+            let isLeft = calPositionBarIsLeft(tags)
+            if (isLeft) {
+                animate = ["animate__bounceInLeft", "animate__bounceOutLeft"]
+                nav.css('left', 0)
+                nav.css('right', 'auto')
+            }
+            else {
+                animate = ["animate__bounceInRight", "animate__bounceOutRight"]
+                nav.css('left', 'auto')
+                nav.css('right', 0)
+            }
+            // Render bar
+            nav.show()
+            nav.removeClass(animate[1]).addClass(animate[0])
+            // Render 
+            $('.background-disable').show()
+        }
+    }
+    function calPositionBarIsLeft(tags) {
+        let windowWidth = $(window).width()
+        let boundaryRight = windowWidth - 0.15 * windowWidth;
+        let boundaryLeft = 0.15 * windowWidth;
+        let left = tags.getBoundingClientRect().left;
+        let width = tags.offsetWidth;
+        return ((left < boundaryLeft) ? ((left + width < boundaryRight) ? false : true) : true)
+
+    }
+
+    new Chart(document.getElementById("chart-1-content"), {
+        type: 'line',
+        data: {
+            labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+            datasets: [{
+                data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                label: "Africa",
+                borderColor: "#3e95cd",
+                fill: false
+            }
+            ]
+        },
+        responsive: true,
+        options: {
+            legend: false
+        }
+    });
+    new Chart(document.getElementById("chart-2-content"), {
+        type: 'pie',
+        data: {
+            labels: ["Africa", "Asia", "Europe"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                data: [2478, 5267, 734],
+            }]
+        },
+        responsive: true,
+        options: {
+            legend: {
+                position: 'bottom',
+                align: 'end',
+                labels: {
+                    fontColor: '#333', usePointStyle: true
+                }
+            }
+        }
+    });
+
+    var grid = $('.grid-stack').gridstack({
+      width: 40,
+        column: 40,
+        cellHeight: 10,
+        cellHeightUnit: 'px',
+        animate:true
+    }).data('gridstack')
+    grid.enable()
+
+    // GridStack.init(
+    //     {
+    //         width: 10,
+    //         row: 0,
+    //         cellHeight: 10,
+    //         cellHeightUnit: 'px'
+
+    //     })
+
+
+</script>
+
+</html>
